@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+  nginx:
+    image: nginx:alpine
+    restart: always
+    environment:
+      GOVTECH_HOST: "54.255.195.60"
+    volumes:
+      - "./nginx.conf:/etc/nginx/templates/default.conf.template:ro"
+    ports:
+      - "5000:80"
+
+  frontend:
+    build: ./frontend
+    restart: always
+    read_only: true
+
+  backend:
+    build: ./backend
+    restart: always
+    read_only: true
+    environment:
+      FLASK_SQLALCHEMY_DATABASE_URI: mysql://whitehacks:super_duper_whitehacks_strong_password@db/whitehacks
+      FLASK_SECRET_KEY: WHITEHACKS2020
+
+  xxe:
+    build: ./xxe
+    restart: always
+    read_only: true
+
+  db:
+    image: mariadb:10.5
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: super_duper_whitehacks_strong_password
+      MYSQL_DATABASE: whitehacks
+      MYSQL_USER: whitehacks
+      MYSQL_PASSWORD: super_duper_whitehacks_strong_password
+    volumes:
+      - "./backend/db.sql:/docker-entrypoint-initdb.d/db.sql:ro"

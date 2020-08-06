@@ -1,0 +1,32 @@
+.same-width-table {
+    table-layout: fixed;
+    margin: 0 auto;
+}
+
+.white-text {
+    color: #ffffff;
+}
+
+.table-color {
+	background-color: #977C50;
+}
+
+nav {
+	background-color: #102B72 !important;
+}
+
+.gold-text {
+	color: #8A704C;
+}
+
+.btn {
+	background-color: #8A704C !important;
+}
+
+.page-footer {
+	background-color: #102B72 !important;
+}
+
+.footer-copyright {
+	background-color: #8A704C !important;
+}

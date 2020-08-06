@@ -1,0 +1,11 @@
+To all staff,
+
+In light, of the latest randomware attacks. We need to conduct regular backups. 
+While the automated solution is currently a Work-In-Progress, please use the backup script to run the backup task whenever you need to.
+I uploaded my script in Github. The Github link has been sent to you guys via the intranet email system. Please refer to that link to get the source code to run the backup.
+
+Please note that this is just a POC script. Don't expect it to create magic!
+
+
+From Chris Wang
+@chriswang-sectech

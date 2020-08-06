@@ -1,0 +1,34 @@
+version: "3.7"
+services:
+  ssh-service:
+    build:
+      context: ./ssh-service
+    restart: always
+    ports:
+      - "8822:22"
+  web-server:
+    build:
+      context: ./web-service/
+    restart: always
+    volumes:
+      - "./web-service/app:/var/www/html/"
+    ports:
+      - "80:80"
+  mysql-server:
+    image: mysql:8.0.19
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: sa5WciZiZQwcn2vK
+    volumes:
+      - mysql-data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.0.1
+    restart: always
+    environment:
+      PMA_HOST: mysql-server
+      PMA_USER: root
+      PMA_PASSWORD: sa5WciZiZQwcn2vK
+    ports:
+      - "5000:80"
+volumes:
+  mysql-data:

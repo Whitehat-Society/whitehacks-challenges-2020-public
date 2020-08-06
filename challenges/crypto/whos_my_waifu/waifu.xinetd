@@ -1,0 +1,13 @@
+service waifu
+{
+    disable     = no
+    type        = UNLISTED
+    socket_type = stream
+    protocol    = tcp
+    user        = waifu
+    wait        = no
+    bind        = 0.0.0.0
+    server      = /usr/local/bin/python3
+    server_args = -u /home/waifu/server.py
+    port        = 31337
+}

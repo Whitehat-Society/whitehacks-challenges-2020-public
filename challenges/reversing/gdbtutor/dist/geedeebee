@@ -1,0 +1,140 @@
+define cmd
+	printf "%c[0;31m", 0x1b
+	printf "[ cmd ]   "
+	printf $arg0
+	printf "%c[0m", 0x1b
+end
+
+define code
+	printf "%c[0;32m", 0x1b
+	printf "[code]  "
+	printf $arg0
+	printf "%c[0m", 0x1b
+end
+
+define guide
+	printf "%c[0;33m", 0x1b
+	printf "[guide] "
+	printf "%c[0m", 0x1b
+	printf $arg0
+end
+
+set width unlimited
+set height unlimited
+set listsize 50
+set disassembly-flavor intel
+break * 0x0000000000400a0a
+set style enabled off
+
+guide  "               dP dP         dP              dP                    \n"
+guide  "               88 88         88              88                    \n"
+guide  ".d8888b. .d888b88 88d888b. d8888P dP    dP d8888P .d8888b. 88d888b.\n"
+guide  "88'  `88 88'  `88 88'  `88   88   88    88   88   88'  `88 88'  `88\n"
+guide  "88.  .88 88.  .88 88.  .88   88   88.  .88   88   88.  .88 88      \n"
+guide  "`8888P88 `88888P8 88Y8888'   dP   `88888P'   dP   `88888P' dP      \n"
+guide  "     .88                                                           \n"
+guide  " d8888P                                                            \n"
+guide  "\n"
+guide  "\n"
+guide  "Welcome to gdbtutor!\n"
+guide  "This will be a guided tour through the commands and uses of gdb, a\n"
+guide  "powerful debugger tool that will be very useful for any reverse\n"
+guide  "engineering work you do in the future\n"
+guide  "\n"
+guide  "Lets first load our crackme binary:\n"
+cmd    "file ./crackme.bin\n"
+
+define hookpost-file
+	printf "\n"
+	guide  "To make reversing easier, debug information and the source\n"
+	guide  "code for `./crackme.bin` has been provided.\n"
+	guide  "Run the `list` command to display the source\n"
+	guide  "code for the `main` function of our crackme.\n"
+	cmd    "list main\n"
+end
+
+define hookpost-list
+	printf "\n"
+	guide  "Now we can run the binary till the main function\n"
+	guide  "using the `start` command\n"
+	cmd    "start\n"
+end
+
+define hookpost-start
+	printf "\n"
+	guide  "Looking at the `main` function source code. We can see that\n"
+	guide  "`getuid()` needs to return 0 for us to pass the first stage.\n"
+	guide  "However, our user does not have a uid of 0, and thus `getuid()`\n"
+	guide  "will not return 0. Let's try to use gdb to change the return\n"
+	guide  "value of `getuid()` ourselves!\n"
+	guide  "\n"
+	guide  "First, disassemble `main` to get the exact assembly code being run.\n"
+	cmd    "disassemble main\n"
+end
+
+define hookpost-disassemble
+	if $rip < 0x400906
+		printf "\n"
+		guide  "The disassembly may look confusing, but let's zoom in on the call\n"
+		guide  "to the `getuid` function.\n"
+		code   "-----------------------------------------------------------------\n"
+		code   "0x00000000004008e9 <+46>:	call   0x400700 <getuid@plt>\n"
+		code   "0x00000000004008ee <+51>:	test   eax,eax\n"
+		code   "-----------------------------------------------------------------\n"
+		guide  "Based on the `System V AMD64 ABI` calling convention used by linux\n"
+		guide  "the return value of a function is stored in the `rax` register.\n"
+		guide  "The eax register is just the value of the lower 32-bits of the `rax` register.\n"
+		guide  "So if we change the value of `rax`/`eax`, we can change the return value of `getuid`!\n"
+		guide  "First let's set a breakpoint at the address where `eax` is used\n"
+		cmd    "break * 0x00000000004008ee\n"
+		guide  "Afterwards, continue the execution of the program with\n"
+		cmd    "continue\n"
+	end
+end
+
+define hook-stop
+	guide "\n"
+	if $rip == 0x00000000004008ee
+		break * 0x000000000040093d
+		guide  "We can view the curent value of `eax` in two ways.\n"
+		cmd    "print $eax\n"
+		cmd    "info register eax\n"
+		guide  "Then, change the value of `eax` to 0 to pass stage 1\n"
+		cmd    "set $eax = 0\n"
+		guide  "If you display the value of `eax`, you'll see it's changed!\n"
+		guide  "Finally, continue execution to move on to stage 2\n"
+		cmd    "continue\n"
+	end
+	
+	if $rip == 0x000000000040093d
+		guide  "I have helped you to set a breakpoint before the checks\n"
+		guide  "are done for stage 2. In this stage. We are doing a strcmp\n"
+		guide  "of the user's input with a `secret_key` in memory\n"
+		code   "-----------------------------------------------------------------\n"
+		code   "printf(\"Give me the secret key: \");\n"
+		code   "fgets(buf, 99, stdin);\n"
+		code   "...\n"
+		code   "if(strcmp(buf, secret_key) != 0){\n"
+		code   "...\n"
+		code   "    puts(\"You do not know the secret_key, fail stage 2!\");\n"
+		code   "-----------------------------------------------------------------\n"
+		guide  "With the `secret_key` being the string value at address `0x6010a0`\n"
+		code   "-----------------------------------------------------------------\n"
+		code   "0x000000000040097f <+196>:	mov    esi,0x6010a0\n"
+		code   "-----------------------------------------------------------------\n"
+		guide  "Let's find out the value of `secret_key`\n"
+		cmd    "x/s 0x6010a0\n"
+		cmd    "x/s secret_key\n"
+		guide  "After finding the value, continue execution and enter the `secret_key`\n"
+		cmd    "continue\n"
+	end
+
+	if $rip == 0x0000000000400a0a
+		guide  "Great job on this challenge!\n"
+		guide  "I hope you have learnt something new\n"
+		guide  "about the power of gdb in debugging\n"
+		continue
+	end
+
+	guide "\n"
+end

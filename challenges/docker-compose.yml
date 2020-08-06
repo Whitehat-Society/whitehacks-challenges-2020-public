@@ -1,0 +1,71 @@
+version: '3.1'
+
+services:
+  concat:
+    build: crypto/Concatacollision
+    ports:
+      - 10001:31337
+
+  whos_my_waifu:
+    build: crypto/whos_my_waifu
+    ports:
+      - 10002:31337    
+
+  talk_to_me:
+    build: misc/talk_to_me
+    ports:
+      - 11001:1337
+
+  match_maker:
+    build: misc/match_maker
+    ports:
+      - 11002:8080
+    restart: always
+
+  baby_parser:
+    build: reversing/baby-parser
+    ports:
+      - 11003:8080
+
+  raising_morales:
+    build: misc/raising_morales
+    ports:
+      - 11004:31337
+
+  bofschool:
+    build: pwn/BofSchool
+    ports:
+      - 12001:31337
+
+  gdbtutor:
+    build: reversing/gdbtutor
+    ports:
+      - 12002:31337
+    cap_add:
+      - SYS_PTRACE
+
+  emu:
+    build: reversing/x86_64_emu
+    ports:
+      - 12003:31337
+
+  orange:
+    build: web/orange
+    ports:
+      - 13000:80
+  
+  going_postal:
+    build: web/going_postal
+    ports:
+      - 13001:3000
+
+  many_days:
+    build: web/many_days
+    ports:
+      - 13002:8080      
+    restart: always
+
+  pdfc:
+    build: web/pdf_converter
+    ports:
+      - 13003:8080

@@ -1,0 +1,32 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Whitehacks 2020</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/tachyons.min.css">
+        <link rel="stylesheet" href="/css/animate.min.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    
+    <body>
+        <main class="measure center tc sans-serif black-80 absolute absolute--fill">
+            <div class="flex flex-column justify-center items-center h-100">
+                <header>
+                    <h1 class="animated fadeInUp ease-out-circ d2 a-1 f2 fw3">
+                        <code class="db black-40">'Name Registry'</code>
+                    </h1>
+                    <h2 class="animated fadeInUp ease-out-circ d-1 a-2" >
+                        <label for="query">Search</label>
+                        <input type="text" id="query" name="query" value="<%= query %>">
+                        <br>
+                        <br>
+                        <p name="result_area" id="result_area"></p>
+                    </h2>
+                </header>
+            </div>
+        </main>
+    </body>
+</html>
+<script src="/js/jquery-3.5.1.js"></script>
+<script src="/js/custom.js"></script>

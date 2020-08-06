@@ -1,0 +1,13 @@
+service morale
+{
+    disable     = no
+    type        = UNLISTED
+    socket_type = stream
+    protocol    = tcp
+    user        = morale
+    wait        = no
+    bind        = 0.0.0.0
+    server      = /usr/bin/python3
+    server_args = -u /home/morale/morale.py
+    port        = 31337
+}

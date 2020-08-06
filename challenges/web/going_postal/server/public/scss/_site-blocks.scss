@@ -1,0 +1,399 @@
+.hero {
+  position: relative;
+  background-size: cover;
+  &, & > .container > .row {
+    height: 100vh;
+    min-height: 770px;
+  }
+  .intro {
+    position: relative;
+    z-index: 4;
+    h1 {
+      color: $black;
+      font-size: 50px;
+    }
+    strong {
+      font-weight: 900;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+
+  &.inner-page {
+    &, & > .container > .row {
+      height: 40vh!important;
+      min-height: 200px;
+    }
+  }
+
+  &.overlay {
+    position: relative;
+    &:before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba($black,.2);
+    }
+  }
+  
+}
+
+.custom-breadcrumbs {
+  padding-bottom: 40px;
+  a {
+    color: $black;
+  }
+  strong {
+    font-weight: 700;
+  }
+}
+
+.custom-pagination {
+  a, span {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+  }
+  span {
+    background: #efefef;
+  }
+  a {
+    background: $primary;
+    color: $white;
+  }
+}
+
+.trip-form {
+  border-radius: 7px;
+  padding: 40px;
+  background: $white;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 15px 30px 0px rgba($black, .1);
+  .form-control {
+    border-color: rgba($black, .2);
+    padding-left: 20px;
+    padding-right: 20px;
+    &:active, &:focus {
+      border-color: $black;
+    }
+  }
+  .form-control-wrap {
+    position: relative;
+  }
+  .icon {
+    position: absolute;
+    right: 10px;
+    color: #ccc;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+  }
+}
+
+
+.practicing {
+  position: relative;
+  .wrap-icon {
+    position: relative;
+    display: block;
+    z-index: 2;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      width: 40px;
+      height: 40px;
+      background: $primary;
+      border-radius: 50%;
+      z-index: -1;
+    }
+    span {
+      font-size: 50px;
+    }
+  }
+  .number {
+    font-weight: 900;
+  }
+  > span {
+    font-size: 100px;
+    color: $primary;
+    font-weight: 900;
+    top: 0;
+    left: -30px;
+    position: absolute;
+  }
+  .practicing-inner {
+    position: relative;
+    padding: 40px;
+    box-shadow: 0 3px 6px 0 rgba($black, .1);
+    background: $white;
+    font-size: 14px;
+    h3 {
+      font-size: 20px;
+      color: $black;
+      font-weight: 700;
+    }
+    *:last-child {
+      margin-bottom: 0;
+    }
+    p {
+      color: #999;
+    }
+  }
+}
+
+.play-now {
+  .icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: $primary;
+    position: relative;
+    margin-right: 10px;
+    > span {
+      position: absolute;
+      top: 50%;
+      left: 55%;
+      color: $white;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .caption {
+    font-size: 18px;
+  }
+}
+
+.btn {
+  &.btn-primary {
+    padding: 12px 25px;
+  }
+  &.btn-white {
+    background: $white;
+    color: $primary;
+  }
+}
+.opa-7 {
+  color: rgba($white, .7)!important;
+}
+
+.section-heading {
+  strong {
+    font-weight: 700;
+  }
+}
+
+.img-wrap-1 {
+  img {
+    max-width: 400px;
+  }
+}
+
+.social {
+  li {
+    display: inline-block;
+    a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: $primary;
+      color: $white;
+      position: relative;
+      > span {
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+}
+
+.listing {
+  padding: 20px;
+  margin-bottom: 30px;
+  background: $white;
+  border-radius: 7px;
+  .listing-img {
+    width: 100%;
+    margin-left: 0px;
+    margin-top: -40px;
+    margin-bottom: 30px;
+    img {
+      border-radius: 7px;
+      box-shadow: 0 15px 30px 0 rgba($black, .1);
+    }
+  }
+  .listing-contents{
+    h3 {
+      font-size: 18px;
+      font-weight: 900;
+    }
+    .rent-price {
+      strong {
+        color: $primary;
+        font-size: 18px;
+      }
+    }
+
+    .listing-feature{
+      .number {
+        color: #888;
+      }
+    }
+
+    .caption {
+      color: $black;
+      margin-right: 10px;
+    }
+  }
+  p {
+    color: #888;
+    font-size: 14px;
+  }
+}
+
+.book-form {
+  border-radius: 7px;
+  padding: 40px;
+  background: $white;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 15px 30px 0px rgba($black, .1);
+  @include media-breakpoint-down(md) {
+    margin-bottom: -300px;
+  }
+  h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .form-control {
+    border-color: rgba($black, .2);
+    padding-left: 20px;
+    padding-right: 20px;
+    &:active, &:focus {
+      border-color: $black;
+    }
+  }
+  .form-control-wrap {
+    position: relative;
+  }
+  .icon {
+    position: absolute;
+    right: 10px;
+    color: #ccc;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+  }
+}
+
+.testimonial-2 {
+  border-radius: 7px;
+  background: $white;
+  padding: 30px;
+  box-shadow:  0 15px 30px 0 rgba($black, .1);
+  blockquote {
+    font-size: 18px;
+  }
+  .v-card {
+    img {
+      width: 50px;
+      flex: 0 0 50px;
+      border-radius: 50%;
+    }
+  } 
+  .author-name {
+    line-height: 1.3;
+    > span:nth-of-type(2) {
+      color: #ccc;
+    }
+  }
+}
+
+/*Accordion style*/
+
+.custom-accordion {
+  .accordion-item {
+    background-color: $white; 
+    margin-bottom: 10px;
+    border-radius: 4px;
+    position: relative;
+    .btn-link {
+      border-color: #efefef;
+      display: block;
+      width: 100%;
+      padding: 10px 20px;
+      text-decoration: none;
+      text-align: left;
+      color: #999;
+      background: $white;
+      margin-bottom: 10px;
+      &:hover {
+        color: $black;
+      }
+    }
+    &.active {
+      z-index: 2;
+      // box-shadow: 0 15px 30px 0 rgba($black, .2);
+      background: $light;
+      .btn-link {
+        color: $black;
+      }
+    }
+    .accordion-body {
+      padding: 0 20px 20px;
+      color: #888;
+    }
+    
+  }
+}
+
+.post-entry-1 {
+  .meta {
+    color: #ccc;
+  }
+  .post-entry-1-contents {
+    background: $white;
+    padding: 20px;
+    h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      a {
+        color: $black;
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  &.person-1 {
+    text-align: center;
+    img {
+      width: 90px;
+      border-radius: 50%;
+      margin: 0 auto -45px auto;
+    }
+    .post-entry-1-contents {
+      padding-top: 4rem;
+    }
+
+  }
+
+}

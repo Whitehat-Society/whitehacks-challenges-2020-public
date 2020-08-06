@@ -1,0 +1,10 @@
+REM WH2020{d0_1_3v3n_n33d_to_r3v3rs3_1t?}
+
+DELAY 1000
+GUI r
+DELAY 500
+STRING notepad
+ENTER
+
+DELAY 1000
+STRING WH2020{d0_1_3v3n_n33d_to_r3v3rs3_1t?}

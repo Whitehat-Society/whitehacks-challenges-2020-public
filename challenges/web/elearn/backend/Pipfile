@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pylint = "*"
+rope = "*"
+isort = "*"
+
+[packages]
+flask-restful = "*"
+flask-sqlalchemy = "*"
+flask-marshmallow = "*"
+marshmallow-sqlalchemy = "*"
+flask-jwt = "*"
+flask-cors = "*"
+requests = "*"
+
+[requires]
+python_version = "3.8"

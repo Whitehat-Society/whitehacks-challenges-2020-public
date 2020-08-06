@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  app:
+    build:
+      context: ./app
+    restart: always
+    ports:
+      - "8080:3000"
+  submission:
+    build:
+      context: ./submission
+    restart: always
+    ports:
+      - "8081:80"

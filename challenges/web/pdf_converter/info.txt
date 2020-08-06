@@ -1,0 +1,9 @@
+Congratulations on pwning the demo challenge! To get the flag, you will need to demo the exploit on the main stage.
+To prove that you have successfully pwned the system without leaking the exploit, we will spin up a new instance of the exact same challenge for you.
+
+Prepare an exploit that defaces the website (hint: index.html will be writable in the new instance).
+You can deface the website with any content, but keep things safe for work, and do not post offensive material or you would risk disqualification!
+
+Contact @waituck#2607 on discord once you are done!
+
+Once again, congrats on finding the 0-day!

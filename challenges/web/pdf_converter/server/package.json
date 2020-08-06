@@ -1,0 +1,18 @@
+{
+  "name": "pdf_c",
+  "version": "1.0.0",
+  "description": "A free PDF to text converter. ",
+  "author": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-session": "^1.4.0",
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "node-ts-ocr": "^1.0.15",
+    "uuid": "^8.2.0"
+  }
+}
