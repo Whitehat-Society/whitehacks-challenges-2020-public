@@ -14,4 +14,4 @@ NIL
 
 # Flag
 
-`WH2020{CSIT_IS_SOOOO_COOL?!?!?}`
+`WH2020{r00ty0uRfutur3w1ThC$1T}`
